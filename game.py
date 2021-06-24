@@ -27,7 +27,6 @@ hamburguer = pygame.image.load('assets/hamburgao.png')
 comendo = pygame.mixer.Sound('assets/comendo.wav')
 fritando = pygame.mixer.Sound('assets/fritando.wav')
 
-
 def text_objects(texto, fonte):
     textSurface = fonte.render(texto, True, Preto)
     return textSurface, textSurface.get_rect()
@@ -54,6 +53,22 @@ def escrevendoPlacar(desvios):
     texto = font.render('Desvios:' +str(desvios),True, Preto)
     display.blit(texto, (0,0))
 
+def log():
+    while True:
+        nome = input('qual é o seu nome? ')
+        email = input('qual é o seu e-mail? ')
+        if not nome or not email:
+            print('É obrigatório fazer o registro')
+        else:
+            break
+    
+    log = open('registro.txt', 'w')
+    log.write('nome:')
+    log.write(nome)
+    log.write('\n')
+    log.write('email:')
+    log.write(email)   
+    log.close()
 
 def jogo():
     pygame.mixer.music.load('assets/musica.wav')
@@ -123,4 +138,5 @@ def jogo():
         pygame.display.update()
         fps.tick(60)
 
+log()
 jogo()
